@@ -6,6 +6,9 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using YoutubeTV.Controller;
+using YoutubeTV.Providers.Implement;
+using YoutubeTV.Providers.Interface;
 using YoutubeTV.ViewModel.Implement;
 using YoutubeTV.ViewModel.Interface;
 
@@ -34,6 +37,12 @@ namespace YoutubeTV
 
         private void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IRemoteControllViewModel, RemoteControllViewModel>();
+
+            services.AddSingleton<IChannelProvider, ChannelProvider>();
+
+            services.AddSingleton<MainViewController>();
+
             services.AddSingleton<MainWindow>();
         }
     }
