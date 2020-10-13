@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using YoutubeTV.ViewModel.Interface;
 
 namespace YoutubeTV
 {
@@ -20,9 +21,10 @@ namespace YoutubeTV
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(IChannelViewModel channelViewModel)
         {
             InitializeComponent();
+            label.Content = channelViewModel.Test();
         }
     }
 }
