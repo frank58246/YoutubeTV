@@ -7,7 +7,7 @@ using YoutubeTV.Model;
 
 namespace YoutubeTV.ViewModel.Interface
 {
-    public interface IRemoteControllViewModel
+    public interface IChannelViewModel
     {
         public ICommand GoPrivious { get; }
 

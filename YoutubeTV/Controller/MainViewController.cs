@@ -7,15 +7,19 @@ namespace YoutubeTV.Controller
 {
     public class MainViewController
     {
-        public IRemoteControllViewModel _remoteControllViewModel { get; set; }
+        public IChannelViewModel ChannelViewModel { get; set; }
+
+        public IVolumnViewModel VolumnViewModel { get; set; }
 
         public MainViewController()
         {
         }
 
-        public MainViewController(IRemoteControllViewModel remoteControllViewModel)
+        public MainViewController(IChannelViewModel channelViewModel,
+                                  IVolumnViewModel volumnViewModel)
         {
-            this._remoteControllViewModel = remoteControllViewModel;
+            this.ChannelViewModel = channelViewModel;
+            this.VolumnViewModel = volumnViewModel;
         }
     }
 }

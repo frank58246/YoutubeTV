@@ -37,10 +37,15 @@ namespace YoutubeTV
 
         private void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IRemoteControllViewModel, RemoteControllViewModel>();
+            // ViewModel
+            services.AddSingleton<IChannelViewModel, ChannelViewModel>();
+            services.AddSingleton<IVolumnViewModel, VolumnViewModel>();
 
+            // Provider
             services.AddSingleton<IChannelProvider, ChannelProvider>();
+            services.AddSingleton<IUserConfigProvider, UserConfigProvider>();
 
+            // Controller
             services.AddSingleton<MainViewController>();
 
             services.AddSingleton<MainWindow>();

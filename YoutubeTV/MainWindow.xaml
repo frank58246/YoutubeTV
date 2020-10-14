@@ -12,7 +12,10 @@
     </Window.DataContext>
     <Grid>
         <Label x:Name="label"  Content="{Binding _remoteControllViewModel.CurrentChannel.Name}"   HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Button x:Name="btnPrevious" Content="上一台" HorizontalAlignment="Left" Margin="657,63,0,0" VerticalAlignment="Top" />
-        <Button x:Name="btnNext"  Command="{Binding _remoteControllViewModel.GoNext}" Content="下一台" HorizontalAlignment="Left" Margin="721,63,0,0" VerticalAlignment="Top" />
+        <Button x:Name="btnPrevious" Content="上一台" HorizontalAlignment="Left" Margin="611,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.305,0.674" />
+        <Button x:Name="btnNext"  Command="{Binding _remoteControllViewModel.GoNext}" Content="下一台" HorizontalAlignment="Left" Margin="727,83,0,0" VerticalAlignment="Top" />
+        <Image x:Name="image" Source="{Binding VolumnViewModel.CurrentLevlPicture}" HorizontalAlignment="Left" Height="138" Margin="45,32,0,0" VerticalAlignment="Top" Width="52" />
+        <Button x:Name="btnUpLevel" Command="{Binding VolumnViewModel.UpLevel}" Content="++++" HorizontalAlignment="Left" Margin="676,65,0,0" VerticalAlignment="Top" />
+        <Button x:Name="btnDownLevel" Command="{Binding VolumnViewModel.DownLevel}" Content="-------" HorizontalAlignment="Left" Margin="675,118,0,0" VerticalAlignment="Top" />
     </Grid>
 </Window>
