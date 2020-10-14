@@ -18,17 +18,20 @@ namespace YoutubeTV.ViewModel.Implement
 
         private int _currentVolumn;
 
+        private string _currentLevlPicture;
+
         public VolumnViewModel(IUserConfigProvider userConfigProvider)
         {
-            this._userConfigProvider = userConfigProvider;
-            this._currentIndex = this._userConfigProvider.GetLastVolumnIndex();
-            this._currentVolumn = this._allVolumns[_currentIndex];
             // TODO consider use iProvider??
             this._allVolumns = new List<int>()
             {
                 0,1,2
             };
-            //OnPropertyChanged();
+
+            this._userConfigProvider = userConfigProvider;
+            this._currentIndex = this._userConfigProvider.GetLastVolumnIndex();
+            this._currentVolumn = this._allVolumns[_currentIndex];
+            this._currentLevlPicture = $"../../Images_{CurrentLevel}.jpg";
         }
 
         public ICommand UpLevel => new RelayCommand(this.AddLevel, this.CanDo);
@@ -42,15 +45,17 @@ namespace YoutubeTV.ViewModel.Implement
                 this._currentIndex++;
             }
             this.CurrentLevel = this._allVolumns[this._currentIndex];
+            this.CurrentLevlPicture = $"../../Images/volumn_{CurrentLevel}.jpg";
         }
 
         private void MinusLevel()
         {
             if (this._currentIndex > 0)
             {
-                this._currentIndex++;
+                this._currentIndex--;
             }
             this.CurrentLevel = this._allVolumns[this._currentIndex];
+            this.CurrentLevlPicture = $"../../Images/volumn_{CurrentLevel}.jpg";
         }
 
         private bool CanDo()
@@ -64,6 +69,16 @@ namespace YoutubeTV.ViewModel.Implement
             set
             {
                 this._currentVolumn = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string CurrentLevlPicture
+        {
+            get { return this._currentLevlPicture; }
+            set
+            {
+                this._currentLevlPicture = value;
                 OnPropertyChanged();
             }
         }
