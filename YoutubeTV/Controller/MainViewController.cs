@@ -9,17 +9,17 @@ namespace YoutubeTV.Controller
     {
         public IChannelViewModel ChannelViewModel { get; set; }
 
-        public IVolumnViewModel VolumnViewModel { get; set; }
+        public IVolumeViewModel VolumeViewModel { get; set; }
 
         public MainViewController()
         {
         }
 
         public MainViewController(IChannelViewModel channelViewModel,
-                                  IVolumnViewModel volumnViewModel)
+                                  IVolumeViewModel volumeViewModel)
         {
             this.ChannelViewModel = channelViewModel;
-            this.VolumnViewModel = volumnViewModel;
+            this.VolumeViewModel = volumeViewModel;
         }
     }
 }

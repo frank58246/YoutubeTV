@@ -9,12 +9,12 @@ namespace YoutubeTV.Providers.Implement
 
     public class UserConfigProvider : IUserConfigProvider
     {
-        public int GetLastVolumnIndex()
+        public int GetLastVolumeIndex()
         {
             return 1;
         }
 
-        public void SetLastVolumnIndex(int index)
+        public void SetLastVolumeIndex(int index)
         {
             Console.WriteLine($"{index} is saved");
         }

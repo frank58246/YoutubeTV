@@ -6,8 +6,8 @@ namespace YoutubeTV.Providers.Interface
 {
     public interface IUserConfigProvider
     {
-        int GetLastVolumnIndex();
+        int GetLastVolumeIndex();
 
-        void SetLastVolumnIndex(int val);
+        void SetLastVolumeIndex(int val);
     }
 }

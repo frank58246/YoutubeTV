@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:YoutubeTV.Controller"
         xmlns:local="clr-namespace:YoutubeTV"
+        xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
@@ -12,10 +13,14 @@
     </Window.DataContext>
     <Grid>
         <Label x:Name="label"  Content="{Binding _remoteControllViewModel.CurrentChannel.Name}"   HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Button x:Name="btnPrevious" Content="上一台" HorizontalAlignment="Left" Margin="611,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.305,0.674" />
-        <Button x:Name="btnNext"  Command="{Binding _remoteControllViewModel.GoNext}" Content="下一台" HorizontalAlignment="Left" Margin="727,83,0,0" VerticalAlignment="Top" />
-        <Image x:Name="image" Source="{Binding VolumnViewModel.CurrentLevlPicture}" HorizontalAlignment="Left" Height="138" Margin="45,32,0,0" VerticalAlignment="Top" Width="52" />
-        <Button x:Name="btnUpLevel" Command="{Binding VolumnViewModel.UpLevel}" Content="++++" HorizontalAlignment="Left" Margin="676,65,0,0" VerticalAlignment="Top" />
-        <Button x:Name="btnDownLevel" Command="{Binding VolumnViewModel.DownLevel}" Content="-------" HorizontalAlignment="Left" Margin="675,118,0,0" VerticalAlignment="Top" />
+        <Button x:Name="btnPrevious" Command="{Binding ChannelViewModel.GoPrivious}"  Content="上一台" HorizontalAlignment="Left" Margin="611,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.305,0.674" />
+        <Button x:Name="btnNext"  Command="{Binding ChannelViewModel.GoNext}" Content="下一台" HorizontalAlignment="Left" Margin="727,83,0,0" VerticalAlignment="Top" />
+        <Button x:Name="btnUpLevel" Command="{Binding VolumeViewModel.UpLevel}" Content="++++" HorizontalAlignment="Left" Margin="676,65,0,0" VerticalAlignment="Top" />
+        <Button x:Name="btnDownLevel" Command="{Binding VolumeViewModel.DownLevel}" Content="-------" HorizontalAlignment="Left" Margin="675,118,0,0" VerticalAlignment="Top" />
+        <wpf:ChromiumWebBrowser
+            x:Name="Browser"
+
+             Address="{Binding ChannelViewModel.CurrentChannel.Url}" Margin="144,128,229,0">
+        </wpf:ChromiumWebBrowser>
     </Grid>
 </Window>

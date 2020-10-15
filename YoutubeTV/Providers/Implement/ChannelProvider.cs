@@ -16,13 +16,13 @@ namespace YoutubeTV.Providers.Implement
                 {
                     Name = "公視",
                     Number = 13,
-                    Url = "https://youtu.be/789FJzTmjsM"
+                    Url = "https://youtu.be/gPpZJlE0Ca8"
                 },
                  new ChannelModel
                 {
                     Name = "TVBS",
                     Number = 55,
-                    Url = "https://www.youtube.com/watch?v=A4FbB8UhNRs&ab_channel=TVBSNEWS"
+                    Url = "https://www.youtube.com/watch?v=XDXJSr6vNdE&ab_channel=tws474"
                 }
             };
 

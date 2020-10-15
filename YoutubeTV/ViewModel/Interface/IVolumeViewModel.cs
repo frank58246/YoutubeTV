@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace YoutubeTV.ViewModel.Interface
 {
-    public interface IVolumnViewModel
+    public interface IVolumeViewModel
     {
         public ICommand UpLevel { get; }
 

@@ -8,29 +8,29 @@ using YoutubeTV.ViewModel.Interface;
 
 namespace YoutubeTV.ViewModel.Implement
 {
-    public class VolumnViewModel : ViewModelBase, IVolumnViewModel
+    public class VolumeViewModel : ViewModelBase, IVolumeViewModel
     {
         private IUserConfigProvider _userConfigProvider;
 
-        private List<int> _allVolumns;
+        private List<int> _allVolumes;
 
         private int _currentIndex;
 
-        private int _currentVolumn;
+        private int _currentVolume;
 
         private string _currentLevlPicture;
 
-        public VolumnViewModel(IUserConfigProvider userConfigProvider)
+        public VolumeViewModel(IUserConfigProvider userConfigProvider)
         {
             // TODO consider use iProvider??
-            this._allVolumns = new List<int>()
+            this._allVolumes = new List<int>()
             {
                 0,1,2
             };
 
             this._userConfigProvider = userConfigProvider;
-            this._currentIndex = this._userConfigProvider.GetLastVolumnIndex();
-            this._currentVolumn = this._allVolumns[_currentIndex];
+            this._currentIndex = this._userConfigProvider.GetLastVolumeIndex();
+            this._currentVolume = this._allVolumes[_currentIndex];
             this._currentLevlPicture = $"../../Images_{CurrentLevel}.jpg";
         }
 
@@ -40,12 +40,12 @@ namespace YoutubeTV.ViewModel.Implement
 
         private void AddLevel()
         {
-            if (this._currentIndex < this._allVolumns.Count - 1)
+            if (this._currentIndex < this._allVolumes.Count - 1)
             {
                 this._currentIndex++;
             }
-            this.CurrentLevel = this._allVolumns[this._currentIndex];
-            this.CurrentLevlPicture = $"../../Images/volumn_{CurrentLevel}.jpg";
+            this.CurrentLevel = this._allVolumes[this._currentIndex];
+            this.CurrentLevlPicture = $"../../Images/volume_{CurrentLevel}.jpg";
         }
 
         private void MinusLevel()
@@ -54,21 +54,21 @@ namespace YoutubeTV.ViewModel.Implement
             {
                 this._currentIndex--;
             }
-            this.CurrentLevel = this._allVolumns[this._currentIndex];
-            this.CurrentLevlPicture = $"../../Images/volumn_{CurrentLevel}.jpg";
+            this.CurrentLevel = this._allVolumes[this._currentIndex];
+            this.CurrentLevlPicture = $"../../Images/volume_{CurrentLevel}.jpg";
         }
 
         private bool CanDo()
         {
-            return _allVolumns.Count > 0;
+            return _allVolumes.Count > 0;
         }
 
         public int CurrentLevel
         {
-            get { return this._currentVolumn; }
+            get { return this._currentVolume; }
             set
             {
-                this._currentVolumn = value;
+                this._currentVolume = value;
                 OnPropertyChanged();
             }
         }

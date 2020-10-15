@@ -1,9 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CefSharp;
+using CefSharp.Wpf;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 using YoutubeTV.Controller;
@@ -31,6 +34,7 @@ namespace YoutubeTV
 
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
+            InitSetting();
             var mainWindow = _serviceProvider.GetService<MainWindow>();
             mainWindow.Show();
         }
@@ -39,7 +43,7 @@ namespace YoutubeTV
         {
             // ViewModel
             services.AddSingleton<IChannelViewModel, ChannelViewModel>();
-            services.AddSingleton<IVolumnViewModel, VolumnViewModel>();
+            services.AddSingleton<IVolumeViewModel, SystemVolumeViewModel>();
 
             // Provider
             services.AddSingleton<IChannelProvider, ChannelProvider>();
@@ -49,6 +53,14 @@ namespace YoutubeTV
             services.AddSingleton<MainViewController>();
 
             services.AddSingleton<MainWindow>();
+        }
+
+        private void InitSetting()
+        {
+            // auto play video
+            var settings = new CefSettings();
+            settings.CefCommandLineArgs["autoplay-policy"] = "no-user-gesture-required";
+            Cef.Initialize(settings, true, browserProcessHandler: null);
         }
     }
 }
