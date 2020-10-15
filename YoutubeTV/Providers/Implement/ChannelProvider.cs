@@ -16,15 +16,23 @@ namespace YoutubeTV.Providers.Implement
                 {
                     Name = "公視",
                     Number = 13,
-                    Url = "https://youtu.be/gPpZJlE0Ca8"
+                    Url = "https://www.youtube.com/embed/ED4QXd5xAco?controls=0"
                 },
                  new ChannelModel
                 {
                     Name = "TVBS",
                     Number = 55,
-                    Url = "https://www.youtube.com/watch?v=XDXJSr6vNdE&ab_channel=tws474"
-                }
+                    Url = "https://www.youtube.com/embed/A4FbB8UhNRs?controls=0"
+                },
+                 new ChannelModel
+                 {
+                    Name = "東森",
+                    Number = 51,
+                    Url = "https://www.youtube.com/embed/wUPPkSANpyo?controls=0"
+                 }
             };
+
+            allChannel.ForEach(x => x.Url += "&autoplay=1");
 
             return allChannel;
         }
