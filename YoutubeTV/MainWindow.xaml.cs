@@ -37,11 +37,14 @@ namespace YoutubeTV
             this._mainViewController = mainViewController;
             this.DataContext = this._mainViewController;
             this.KeyDown += MainWindow_KeyDown;
-            this.MouseEnter += MainWindow_MouseEnter;
+            this.MouseEnter += ShowControllPannel;
+            this.controllPannel.MouseMove += ShowControllPannel;
             this.StartTimer();
         }
 
-        private void MainWindow_MouseEnter(object sender, MouseEventArgs e)
+    
+
+        private void ShowControllPannel(object sender, MouseEventArgs e)
         {
             this.countDown = 5;
             this.controllPannel.Visibility = Visibility.Visible;
@@ -82,7 +85,7 @@ namespace YoutubeTV
             this._timer = new TimersTimer();
             this._timer.Interval = 1000;
 
-            Action checkUI = () =>
+            Action hideControllPannel = () =>
             {
                 if (this.countDown < 0)
                 {
@@ -100,7 +103,7 @@ namespace YoutubeTV
             {
                 if (!CheckAccess())
                 {
-                    Dispatcher.Invoke(checkUI);
+                    Dispatcher.Invoke(hideControllPannel);
                 }
             };
 
