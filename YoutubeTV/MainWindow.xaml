@@ -12,15 +12,15 @@
         <vm:MainViewController />
     </Window.DataContext>
     <Grid>
-        <Label x:Name="label"  Content="{Binding _remoteControllViewModel.CurrentChannel.Name}"   HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Button x:Name="btnPrevious" Command="{Binding ChannelViewModel.GoPrivious}"  Content="上一台" HorizontalAlignment="Left" Margin="611,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.305,0.674" />
-        <Button x:Name="btnNext"  Command="{Binding ChannelViewModel.GoNext}" Content="下一台" HorizontalAlignment="Left" Margin="727,83,0,0" VerticalAlignment="Top" />
-        <Button x:Name="btnUpLevel" Command="{Binding VolumeViewModel.UpLevel}" Content="++++" HorizontalAlignment="Left" Margin="676,65,0,0" VerticalAlignment="Top" />
-        <Button x:Name="btnDownLevel" Command="{Binding VolumeViewModel.DownLevel}" Content="-------" HorizontalAlignment="Left" Margin="675,118,0,0" VerticalAlignment="Top" />
         <wpf:ChromiumWebBrowser
             x:Name="Browser"
 
-             Address="{Binding ChannelViewModel.CurrentChannel.Url}" Margin="144,128,229,0">
+             Address="{Binding ChannelViewModel.CurrentChannel.Url}" Margin="0,0,0,0">
         </wpf:ChromiumWebBrowser>
+        <Label x:Name="label"  Content="{Binding _remoteControllViewModel.CurrentChannel.Name}"   HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button x:Name="btnPrevious" Command="{Binding ChannelViewModel.GoPrivious}"  Content="上一台" HorizontalAlignment="Right" Margin="0,0,140,50" VerticalAlignment="Bottom" RenderTransformOrigin="-0.305,0.674" />
+        <Button x:Name="btnNext"  Command="{Binding ChannelViewModel.GoNext}" Content="下一台" HorizontalAlignment="Right" Margin="0,83,20,50" VerticalAlignment="Bottom" />
+        <Button x:Name="btnUpLevel" Command="{Binding VolumeViewModel.UpLevel}" Content="++++" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,80,80" />
+        <Button x:Name="btnDownLevel" Command="{Binding VolumeViewModel.DownLevel}" Content="-------" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,80,20" />
     </Grid>
 </Window>

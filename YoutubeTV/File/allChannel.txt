@@ -1,5 +1,4 @@
 6;https://www.youtube.com/embed/oV_i3Hsl_zg;大愛
 18;https://www.youtube.com/embed/YYYE1FHh5sM;CNN
-24;https://www.youtube.com/embed/4ZVUmEUFwaY;三立
 13;https://www.youtube.com/embed/ED4QXd5xAco;公視
 51;https://www.youtube.com/embed/wUPPkSANpyo;東森
