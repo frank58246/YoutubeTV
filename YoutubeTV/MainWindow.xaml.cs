@@ -22,10 +22,41 @@ namespace YoutubeTV
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainViewController _mainViewController;
+
         public MainWindow(MainViewController mainViewController)
         {
             InitializeComponent();
-            this.DataContext = mainViewController;
+            this._mainViewController = mainViewController;
+            this.DataContext = this._mainViewController;
+            this.KeyDown += MainWindow_KeyDown;
+        }
+
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            // change channel
+            if (e.Key == Key.Right)
+            {
+                this._mainViewController.ChannelViewModel.GoNext.Execute(null);
+            }
+
+            if (e.Key == Key.Left)
+            {
+                this._mainViewController.ChannelViewModel.GoPrivious.Execute(null);
+            }
+
+            // change volume
+            if (e.Key == Key.Up)
+            {
+                this._mainViewController.VolumeViewModel.UpLevel.Execute(null);
+            }
+
+            if (e.Key == Key.Down)
+            {
+                this._mainViewController.VolumeViewModel.DownLevel.Execute(null);
+            }
+
+            //throw new NotImplementedException();
         }
     }
 }
