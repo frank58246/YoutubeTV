@@ -2,3 +2,12 @@
 18;https://www.youtube.com/embed/YYYE1FHh5sM;CNN
 13;https://www.youtube.com/embed/ED4QXd5xAco;公視
 51;https://www.youtube.com/embed/wUPPkSANpyo;東森
+64;https://www.youtube.com/embed/Xwo2l_qrrnM;愛爾達綜合台
+123;https://www.youtube.com/embed/PQLMD4iHhG8;國會頻道1
+9;https://www.youtube.com/embed/ptqD4qo9D3I;中視
+11;https://www.youtube.com/embed/HvqBnBVNRuw;華視
+17;https://www.youtube.com/embed/LWwepk1p5kE;客家電視台
+60;https://www.youtube.com/embed/wSKE3A40SIk;新唐人電視台
+52;https://www.youtube.com/embed/wUPPkSANpyo;中天電視台
+
+

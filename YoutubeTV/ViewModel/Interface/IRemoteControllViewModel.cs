@@ -13,6 +13,11 @@ namespace YoutubeTV.ViewModel.Interface
 
         public ICommand GoNext { get; }
 
+        /// <summary>
+        /// Switch between two channel
+        /// </summary>
+        public ICommand Switch { get; }
+
         public ChannelModel CurrentChannel { get; set; }
     }
 }

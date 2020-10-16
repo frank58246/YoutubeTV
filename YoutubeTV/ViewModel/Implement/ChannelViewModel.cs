@@ -21,6 +21,23 @@ namespace YoutubeTV.ViewModel.Implement
 
         private ChannelModel _currentChannel;
 
+        private int _lastChannelIndex = 0;
+
+        public int CurrentIndex
+        {
+            get { return this._currentIndex; }
+            set
+            {
+                if (this._currentIndex == value)
+                {
+                    return;
+                }
+
+                this._lastChannelIndex = this._currentIndex;
+                this._currentIndex = value;
+            }
+        }
+
         private int _currentIndex;
 
         public ChannelViewModel()
@@ -30,7 +47,7 @@ namespace YoutubeTV.ViewModel.Implement
         public ChannelViewModel(IChannelProvider channelProvider)
         {
             this._allChannel = channelProvider.GetAllChannel();
-            _currentChannel = _allChannel[_currentIndex];
+            _currentChannel = _allChannel[CurrentIndex];
         }
 
         public ChannelModel CurrentChannel
@@ -40,7 +57,6 @@ namespace YoutubeTV.ViewModel.Implement
             {
                 this._currentChannel = value;
                 OnPropertyChanged();
-                //OnChannelChanged(_currentChannel);
             }
         }
 
@@ -48,22 +64,39 @@ namespace YoutubeTV.ViewModel.Implement
 
         public ICommand GoNext => new RelayCommand(GoNextChannel, CanDo);
 
+        public ICommand Switch => new RelayCommand(SwitchChannel, CanDo);
+
         private void GoPreviousChannel()
         {
-            _currentIndex -= 1;
-            if (_currentIndex < 0)
+            CurrentIndex -= 1;
+            if (CurrentIndex < 0)
             {
-                _currentIndex += _allChannel.Count;
+                CurrentIndex += _allChannel.Count;
             }
 
-            CurrentChannel = _allChannel[_currentIndex];
+            CurrentChannel = _allChannel[CurrentIndex];
         }
 
         private void GoNextChannel()
         {
-            _currentIndex += 1;
-            _currentIndex %= _allChannel.Count;
-            CurrentChannel = _allChannel[_currentIndex];
+            CurrentIndex += 1;
+            CurrentIndex %= _allChannel.Count;
+            CurrentChannel = _allChannel[CurrentIndex];
+        }
+
+        private void SwitchChannel()
+        {
+            if (this._lastChannelIndex < 0)
+            {
+                return;
+            }
+
+            // swap
+            var temp = this._currentIndex;
+            this._currentIndex = this._lastChannelIndex;
+            this._lastChannelIndex = temp;
+
+            this.CurrentChannel = _allChannel[CurrentIndex];
         }
 
         private bool CanDo()

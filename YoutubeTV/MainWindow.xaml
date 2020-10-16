@@ -22,5 +22,6 @@
         <Button x:Name="btnNext"  Command="{Binding ChannelViewModel.GoNext}" Content="下一台" HorizontalAlignment="Right" Margin="0,83,20,50" VerticalAlignment="Bottom" />
         <Button x:Name="btnUpLevel" Command="{Binding VolumeViewModel.UpLevel}" Content="++++" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,80,80" />
         <Button x:Name="btnDownLevel" Command="{Binding VolumeViewModel.DownLevel}" Content="-------" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,80,20" />
+        <Button x:Name="button" Command="{Binding ChannelViewModel.Switch}" Content="Switch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,80,50" />
     </Grid>
 </Window>
