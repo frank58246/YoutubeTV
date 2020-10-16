@@ -37,7 +37,14 @@ namespace YoutubeTV
             this._mainViewController = mainViewController;
             this.DataContext = this._mainViewController;
             this.KeyDown += MainWindow_KeyDown;
+            this.MouseEnter += MainWindow_MouseEnter;
             this.StartTimer();
+        }
+
+        private void MainWindow_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.countDown = 5;
+            this.controllPannel.Visibility = Visibility.Visible;
         }
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
@@ -53,6 +60,11 @@ namespace YoutubeTV
                 this._mainViewController.ChannelViewModel.GoPrivious.Execute(null);
             }
 
+            if (e.Key == Key.RightShift)
+            {
+                this._mainViewController.ChannelViewModel.Switch.Execute(null);
+            }
+
             // change volume
             if (e.Key == Key.Up)
             {
@@ -63,14 +75,12 @@ namespace YoutubeTV
             {
                 this._mainViewController.VolumeViewModel.DownLevel.Execute(null);
             }
-
-            //throw new NotImplementedException();
         }
 
         private void StartTimer()
         {
             this._timer = new TimersTimer();
-            this._timer.Interval = 1;
+            this._timer.Interval = 1000;
 
             Action checkUI = () =>
             {
@@ -82,7 +92,7 @@ namespace YoutubeTV
                 this.countDown--;
                 if (this.countDown == 0)
                 {
-                    this.btnNext.Visibility = Visibility.Hidden;
+                    this.controllPannel.Visibility = Visibility.Hidden;
                 }
             };
 
@@ -93,6 +103,7 @@ namespace YoutubeTV
                     Dispatcher.Invoke(checkUI);
                 }
             };
+
             this._timer.Elapsed += new ElapsedEventHandler(action);
             this._timer.Start();
         }
