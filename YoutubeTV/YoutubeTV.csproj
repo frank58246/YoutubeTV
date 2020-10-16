@@ -8,12 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="File\allChannel.txt" />
     <None Remove="Images\volumn_0.jpg" />
     <None Remove="Images\volumn_1.jpg" />
     <None Remove="Images\volumn_2.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="File\allChannel.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\volumn_0.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

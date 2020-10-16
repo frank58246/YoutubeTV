@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Windows.Shapes;
 using YoutubeTV.Model;
 using YoutubeTV.Providers.Interface;
 
@@ -10,31 +12,29 @@ namespace YoutubeTV.Providers.Implement
     {
         public List<ChannelModel> GetAllChannel()
         {
-            var allChannel = new List<ChannelModel>()
+            string line;
+            var result = new List<ChannelModel>();
+            using (var file = new StreamReader(@"File\allChannel.txt"))
             {
-                new ChannelModel
+                while ((line = file.ReadLine()) != null)
                 {
-                    Name = "公視",
-                    Number = 13,
-                    Url = "https://www.youtube.com/embed/ED4QXd5xAco?controls=0"
-                },
-                 new ChannelModel
-                {
-                    Name = "TVBS",
-                    Number = 55,
-                    Url = "https://www.youtube.com/embed/A4FbB8UhNRs?controls=0"
-                },
-                 new ChannelModel
-                 {
-                    Name = "東森",
-                    Number = 51,
-                    Url = "https://www.youtube.com/embed/wUPPkSANpyo?controls=0"
-                 }
-            };
+                    var contents = line.Split(";");
+                    if (contents.Length == 3)
+                    {
+                        var channel = new ChannelModel
+                        {
+                            Number = int.Parse(contents[0]),
+                            Url = contents[1],
+                            Name = contents[2]
+                        };
 
-            allChannel.ForEach(x => x.Url += "&autoplay=1");
+                        result.Add(channel);
+                    }
+                }
+            }
+            result.ForEach(x => x.Url += "?controls=0&autoplay=1");
 
-            return allChannel;
+            return result;
         }
     }
 }
