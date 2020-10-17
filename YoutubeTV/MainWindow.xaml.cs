@@ -44,15 +44,26 @@ namespace YoutubeTV
             this.KeyDown += MainWindow_KeyDown;
             this.MouseEnter += ShowControllPannel;
             this.controllPannel.MouseMove += ShowControllPannel;
-            this.label.SourceUpdated += Label_SourceUpdated;
+            this._mainViewController.ChannelViewModel.OnChangingChannel = OnChangingChannel;
 
+            // timer
             this.StartTimer();
         }
 
-        private void Label_SourceUpdated(object sender, DataTransferEventArgs e)
+        private void OnChangingChannel()
         {
+            var changingText = this.lblChangingChannel.Content.ToString();
             this.channelCountDown = 5;
-            this.lblChangeChannel.Visibility = Visibility.Visible;
+            if (changingText == "")
+            {
+                this.lblCurrentChannel.Visibility = channelCountDown > 0
+                                                        ? Visibility.Visible
+                                                        : Visibility.Visible;
+            }
+            else
+            {
+                this.lblCurrentChannel.Visibility = Visibility.Hidden;
+            }
         }
 
         private void ShowControllPannel(object sender, MouseEventArgs e)
@@ -63,6 +74,7 @@ namespace YoutubeTV
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
+            Console.WriteLine(e.Key);
             switch (e.Key)
             {
                 // change volume
@@ -98,7 +110,7 @@ namespace YoutubeTV
                 case Key.NumPad7:
                 case Key.NumPad8:
                 case Key.NumPad9:
-                    // NumPad0 value = 74
+                    // NumPad0 value is 74
                     var intValue = (int)e.Key - 74;
                     this._mainViewController.ChannelViewModel.HandleNumKeyDown(intValue);
                     break;
@@ -140,7 +152,14 @@ namespace YoutubeTV
                 this.channelCountDown--;
                 if (this.channelCountDown == 0)
                 {
-                    this.lblChangeChannel.Visibility = Visibility.Hidden;
+                    if (this.lblChangingChannel.Content.ToString() != "")
+                    {
+                        this._mainViewController.ChannelViewModel.HandleEnterKeyDown();
+                    }
+                    else
+                    {
+                        this.lblCurrentChannel.Visibility = Visibility.Hidden;
+                    }
                 }
             };
 

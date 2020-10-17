@@ -22,6 +22,8 @@ namespace YoutubeTV.ViewModel.Interface
 
         public string ChangingChannel { get; set; }
 
+        public Action OnChangingChannel { get; set; }
+
         public void HandleNumKeyDown(int num);
 
         public void HandleEnterKeyDown();

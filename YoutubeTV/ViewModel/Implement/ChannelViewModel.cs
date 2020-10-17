@@ -28,6 +28,12 @@ namespace YoutubeTV.ViewModel.Implement
 
         private string _changingChannel = "";
 
+        public ChannelViewModel()
+        {
+        }
+
+        public Action OnChangingChannel { get; set; }
+
         public int CurrentIndex
         {
             get { return this._currentIndex; }
@@ -41,10 +47,6 @@ namespace YoutubeTV.ViewModel.Implement
                 this._lastChannelIndex = this._currentIndex;
                 this._currentIndex = value;
             }
-        }
-
-        public ChannelViewModel()
-        {
         }
 
         public ChannelViewModel(IChannelProvider channelProvider)
@@ -70,6 +72,10 @@ namespace YoutubeTV.ViewModel.Implement
             {
                 this._changingChannel = value;
                 OnPropertyChanged();
+                if (this.OnChangingChannel != null)
+                {
+                    OnChangingChannel.Invoke();
+                }
             }
         }
 
@@ -81,12 +87,41 @@ namespace YoutubeTV.ViewModel.Implement
 
         public void HandleNumKeyDown(int num)
         {
-            this.ChangingChannel += num.ToString();
+            if (this.ChangingChannel.Count() >= 3)
+            {
+                var target = int.Parse(this.ChangingChannel);
+                this.ChangeChannel(target);
+                this.ChangingChannel = num.ToString();
+            }
+            else
+            {
+                this.ChangingChannel += num.ToString();
+            }
         }
 
         public void HandleEnterKeyDown()
         {
-            this.ChangingChannel = "0";
+            if (int.TryParse(this.ChangingChannel, out var target))
+            {
+                this.ChangeChannel(target);
+            }
+            else
+            {
+                this.ChangingChannel = "";
+            }
+        }
+
+        private void ChangeChannel(int target)
+        {
+            var channel = this._allChannel.Where(x => x.Number == target).FirstOrDefault();
+            if (channel != null)
+            {
+                var index = _allChannel.IndexOf(channel);
+                this.CurrentIndex = index;
+                this.CurrentChannel = this._allChannel[CurrentIndex];
+            }
+
+            this.ChangingChannel = "";
         }
 
         private void GoPreviousChannel()
@@ -114,6 +149,7 @@ namespace YoutubeTV.ViewModel.Implement
                 return;
             }
 
+            // TODO need refractor
             // swap
             var temp = this._currentIndex;
             this._currentIndex = this._lastChannelIndex;
