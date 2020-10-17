@@ -19,5 +19,11 @@ namespace YoutubeTV.ViewModel.Interface
         public ICommand Switch { get; }
 
         public ChannelModel CurrentChannel { get; set; }
+
+        public string ChangingChannel { get; set; }
+
+        public void HandleNumKeyDown(int num);
+
+        public void HandleEnterKeyDown();
     }
 }

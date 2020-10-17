@@ -16,10 +16,11 @@
         <!--MainView-->
         <wpf:ChromiumWebBrowser   x:Name="Browser" Address="{Binding ChannelViewModel.CurrentChannel.Url}" Margin="0,0,0,0" />
         <Label x:Name="blockLayer" />
-        <Label x:Name="label" Foreground="Azure"  Content="{Binding ChannelViewModel.CurrentChannel.Number}"   HorizontalAlignment="Center" VerticalAlignment="Center" Background="#00C7930E" IsEnabled="False" />
+        <Label x:Name="lblChangeChannel" Content="{Binding ChannelViewModel.ChangingChannel}" Foreground="Azure"     HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00C7930E" IsEnabled="False" Margin="150,100,0,0" />
 
         <!--Controll-->
         <Grid x:Name="controllPannel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,2,0,0" Width="200" Panel.ZIndex="1" Background="Transparent">
+            <Label x:Name="label" Foreground="Azure"  Content="{Binding ChannelViewModel.CurrentChannel.Number}"   HorizontalAlignment="Center" VerticalAlignment="Center" Background="#00C7930E" IsEnabled="False" />
             <Button x:Name="btnPrevious" Command="{Binding ChannelViewModel.GoPrivious}"  Content="上一台" HorizontalAlignment="Right" Margin="0,0,140,50" VerticalAlignment="Bottom" RenderTransformOrigin="-0.305,0.674" />
             <Button x:Name="btnNext"  Command="{Binding ChannelViewModel.GoNext}" Content="下一台" HorizontalAlignment="Right" Margin="0,83,20,50" VerticalAlignment="Bottom" />
             <Button x:Name="btnUpLevel" Command="{Binding VolumeViewModel.UpLevel}" Content="++++" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,80,80" />

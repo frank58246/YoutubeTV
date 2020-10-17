@@ -27,56 +27,88 @@ namespace YoutubeTV
     {
         private TimersTimer _timer;
 
-        private int countDown = 5;
+        private int controllCountDown = 5;
+
+        private int channelCountDown = 5;
 
         private MainViewController _mainViewController;
 
         public MainWindow(MainViewController mainViewController)
         {
+            // binding
             InitializeComponent();
             this._mainViewController = mainViewController;
             this.DataContext = this._mainViewController;
+
+            // event
             this.KeyDown += MainWindow_KeyDown;
             this.MouseEnter += ShowControllPannel;
             this.controllPannel.MouseMove += ShowControllPannel;
+            this.label.SourceUpdated += Label_SourceUpdated;
+
             this.StartTimer();
         }
 
-    
+        private void Label_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            this.channelCountDown = 5;
+            this.lblChangeChannel.Visibility = Visibility.Visible;
+        }
 
         private void ShowControllPannel(object sender, MouseEventArgs e)
         {
-            this.countDown = 5;
+            this.controllCountDown = 5;
             this.controllPannel.Visibility = Visibility.Visible;
         }
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            // change channel
-            if (e.Key == Key.Right)
+            switch (e.Key)
             {
-                this._mainViewController.ChannelViewModel.GoNext.Execute(null);
-            }
+                // change volume
+                case Key.Up:
+                    this._mainViewController.VolumeViewModel.UpLevel.Execute(null);
+                    break;
 
-            if (e.Key == Key.Left)
-            {
-                this._mainViewController.ChannelViewModel.GoPrivious.Execute(null);
-            }
+                case Key.Down:
+                    this._mainViewController.VolumeViewModel.DownLevel.Execute(null);
+                    break;
 
-            if (e.Key == Key.RightShift)
-            {
-                this._mainViewController.ChannelViewModel.Switch.Execute(null);
-            }
+                // channel by direction
+                case Key.Right:
+                    this._mainViewController.ChannelViewModel.GoNext.Execute(null);
+                    break;
 
-            // change volume
-            if (e.Key == Key.Up)
-            {
-                this._mainViewController.VolumeViewModel.UpLevel.Execute(null);
-            }
+                case Key.Left:
+                    this._mainViewController.ChannelViewModel.GoPrivious.Execute(null);
+                    break;
 
-            if (e.Key == Key.Down)
-            {
-                this._mainViewController.VolumeViewModel.DownLevel.Execute(null);
+                case Key.RightShift:
+                    this._mainViewController.ChannelViewModel.Switch.Execute(null);
+                    break;
+
+                // change channel by num
+                case Key.NumPad0:
+                case Key.NumPad1:
+                case Key.NumPad2:
+                case Key.NumPad3:
+                case Key.NumPad4:
+                case Key.NumPad5:
+                case Key.NumPad6:
+                case Key.NumPad7:
+                case Key.NumPad8:
+                case Key.NumPad9:
+                    // NumPad0 value = 74
+                    var intValue = (int)e.Key - 74;
+                    this._mainViewController.ChannelViewModel.HandleNumKeyDown(intValue);
+                    break;
+
+                case Key.Enter:
+                    this._mainViewController.ChannelViewModel.HandleEnterKeyDown();
+                    break;
+
+                default:
+                    break;
             }
         }
 
@@ -87,23 +119,37 @@ namespace YoutubeTV
 
             Action hideControllPannel = () =>
             {
-                if (this.countDown < 0)
+                if (this.controllCountDown < 0)
                 {
                     return;
                 }
 
-                this.countDown--;
-                if (this.countDown == 0)
+                this.controllCountDown--;
+                if (this.controllCountDown == 0)
                 {
                     this.controllPannel.Visibility = Visibility.Hidden;
                 }
             };
 
-            Action<object, ElapsedEventArgs> action = (y, x) =>
+            Action hideChangeChannel = () =>
+            {
+                if (this.channelCountDown < 0)
+                {
+                    return;
+                }
+                this.channelCountDown--;
+                if (this.channelCountDown == 0)
+                {
+                    this.lblChangeChannel.Visibility = Visibility.Hidden;
+                }
+            };
+
+            Action<object, ElapsedEventArgs> action = (obj, args) =>
             {
                 if (!CheckAccess())
                 {
                     Dispatcher.Invoke(hideControllPannel);
+                    Dispatcher.Invoke(hideChangeChannel);
                 }
             };
 

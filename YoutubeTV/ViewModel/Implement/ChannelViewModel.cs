@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Channels;
@@ -21,7 +22,11 @@ namespace YoutubeTV.ViewModel.Implement
 
         private ChannelModel _currentChannel;
 
-        private int _lastChannelIndex = 0;
+        private int _lastChannelIndex;
+
+        private int _currentIndex;
+
+        private string _changingChannel = "";
 
         public int CurrentIndex
         {
@@ -38,15 +43,13 @@ namespace YoutubeTV.ViewModel.Implement
             }
         }
 
-        private int _currentIndex;
-
         public ChannelViewModel()
         {
         }
 
         public ChannelViewModel(IChannelProvider channelProvider)
         {
-            this._allChannel = channelProvider.GetAllChannel();
+            _allChannel = channelProvider.GetAllChannel();
             _currentChannel = _allChannel[CurrentIndex];
         }
 
@@ -60,11 +63,31 @@ namespace YoutubeTV.ViewModel.Implement
             }
         }
 
+        public string ChangingChannel
+        {
+            get { return this._changingChannel; }
+            set
+            {
+                this._changingChannel = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand GoPrivious => new RelayCommand(GoPreviousChannel, CanDo);
 
         public ICommand GoNext => new RelayCommand(GoNextChannel, CanDo);
 
         public ICommand Switch => new RelayCommand(SwitchChannel, CanDo);
+
+        public void HandleNumKeyDown(int num)
+        {
+            this.ChangingChannel += num.ToString();
+        }
+
+        public void HandleEnterKeyDown()
+        {
+            this.ChangingChannel = "0";
+        }
 
         private void GoPreviousChannel()
         {
