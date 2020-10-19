@@ -1,13 +1,23 @@
-6;https://www.youtube.com/embed/oV_i3Hsl_zg;大愛
-18;https://www.youtube.com/embed/YYYE1FHh5sM;CNN
+4;https://www.youtube.com/embed/XxJKnDLYZz4;民視
+6;https://www.youtube.com/embed/YYYE1FHh5sM;CNN
+#7;https://www.youtube.com/embed/xL0ch83RAK8;台視;;
+9;https://www.youtube.com/embed/ptqD4qo9D3I;中視
+10;https://www.youtube.com/embed/oV_i3Hsl_zg;大愛
+11;https://www.youtube.com/embed/HvqBnBVNRuw;華視
+12;動物星球
 13;https://www.youtube.com/embed/ED4QXd5xAco;公視
-51;https://www.youtube.com/embed/wUPPkSANpyo;東森
+14;https://www.youtube.com/embed/iTz7AfRrxH4;公視台與台
+15;https://www.youtube.com/embed/21X5lGlDOfg;NASALive
+16;原住民電視台
+17;https://www.youtube.com/embed/LWwepk1p5kE;客家電視台
+18;國家地理頻道
+19;Discovery
+https://www.youtube.com/embed/HRzVQQ25zJw;WBKid
+51;https://www.youtube.com/embed/wUPPkSANpyo;東森新聞台
+52;https://www.youtube.com/embed/wUPPkSANpyo;中天電視台
+#54;https://www.youtube.com/embed/4ZVUmEUFwaY;三立新聞;
+60;https://www.youtube.com/embed/wSKE3A40SIk;新唐人電視台
 64;https://www.youtube.com/embed/Xwo2l_qrrnM;愛爾達綜合台
 123;https://www.youtube.com/embed/PQLMD4iHhG8;國會頻道1
-9;https://www.youtube.com/embed/ptqD4qo9D3I;中視
-11;https://www.youtube.com/embed/HvqBnBVNRuw;華視
-17;https://www.youtube.com/embed/LWwepk1p5kE;客家電視台
-60;https://www.youtube.com/embed/wSKE3A40SIk;新唐人電視台
-52;https://www.youtube.com/embed/wUPPkSANpyo;中天電視台
 
 

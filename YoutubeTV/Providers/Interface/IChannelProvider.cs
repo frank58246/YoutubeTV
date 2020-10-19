@@ -9,5 +9,9 @@ namespace YoutubeTV.Providers.Interface
     public interface IChannelProvider
     {
         List<ChannelModel> GetAllChannel();
+
+        int GetLastChannel();
+
+        void SetLastChannel(int value);
     }
 }

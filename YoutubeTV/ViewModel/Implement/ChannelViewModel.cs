@@ -18,6 +18,8 @@ namespace YoutubeTV.ViewModel.Implement
     public class ChannelViewModel : ViewModelBase, IChannelViewModel
 
     {
+        private IChannelProvider _channelProvider;
+
         private List<ChannelModel> _allChannel;
 
         private ChannelModel _currentChannel;
@@ -51,7 +53,19 @@ namespace YoutubeTV.ViewModel.Implement
 
         public ChannelViewModel(IChannelProvider channelProvider)
         {
-            _allChannel = channelProvider.GetAllChannel();
+            this._allChannel = channelProvider.GetAllChannel();
+            this._channelProvider = channelProvider;
+
+            // Get last viewd channel
+            var lastChnnel = channelProvider.GetLastChannel();
+            for (int i = 0; i < _allChannel.Count(); i++)
+            {
+                if (_allChannel[i].Number == lastChnnel)
+                {
+                    CurrentIndex = i;
+                    break;
+                }
+            }
             _currentChannel = _allChannel[CurrentIndex];
         }
 
@@ -61,6 +75,7 @@ namespace YoutubeTV.ViewModel.Implement
             set
             {
                 this._currentChannel = value;
+                this._channelProvider.SetLastChannel(this._currentChannel.Number);
                 OnPropertyChanged();
             }
         }
