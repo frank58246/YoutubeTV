@@ -5,11 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 using YoutubeTV.Controller;
+using YoutubeTV.Misc;
 using YoutubeTV.Providers.Implement;
 using YoutubeTV.Providers.Interface;
 using YoutubeTV.ViewModel.Implement;
@@ -26,6 +28,8 @@ namespace YoutubeTV
 
         public App()
         {
+            ZipManager.Uncompress(@"CefPack/CEF.zip", Directory.GetCurrentDirectory());
+
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
 

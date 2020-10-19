@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -15,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using YoutubeTV.Controller;
+using YoutubeTV.Misc;
 using YoutubeTV.ViewModel.Interface;
 using TimersTimer = System.Timers.Timer;
 
