@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:YoutubeTV"
         xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" InputScope="NumberFullWidth">
     <Window.DataContext>
         <vm:MainViewController />
     </Window.DataContext>
@@ -16,23 +16,16 @@
         <!--MainView-->
         <wpf:ChromiumWebBrowser   x:Name="Browser" Address="{Binding ChannelViewModel.CurrentChannel.Url}" Margin="0,0,0,0" />
         <Label x:Name="blockLayer" />
-        <Label x:Name="lblChangingChannel"
-                 Content="{Binding ChannelViewModel.ChangingChannel}"
-                 Foreground="Green"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 Background="#00C7930E"
-                 IsEnabled="False"
-                 Margin="150,100,0,0" Width="100" Height="98" Panel.ZIndex="55" />
         <Label x:Name="lblCurrentChannel" Content="{Binding  ChannelViewModel.CurrentChannel.Number}" Foreground="Green"     HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00C7930E" IsEnabled="False" Margin="100,100,0,0" Width="100" Height="98" Panel.ZIndex="55" FontSize="48" />
+        <Label x:Name="lblChangingChannel" Content="{Binding  ChannelViewModel.ChangingChannel}" Foreground="Green"     HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00C7930E" IsEnabled="False" Margin="100,100,0,0" Width="100" Height="98" Panel.ZIndex="55" FontSize="48" />
 
         <!--Controll-->
         <Grid x:Name="controllPannel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,2,0,0" Width="200" Panel.ZIndex="1" Background="Transparent">
-            <Button x:Name="btnPrevious" Command="{Binding ChannelViewModel.GoPrivious}"  Content="上一台" HorizontalAlignment="Right" Margin="0,0,140,50" VerticalAlignment="Bottom" RenderTransformOrigin="-0.305,0.674" />
-            <Button x:Name="btnNext"  Command="{Binding ChannelViewModel.GoNext}" Content="下一台" HorizontalAlignment="Right" Margin="0,83,20,50" VerticalAlignment="Bottom" />
-            <Button x:Name="btnUpLevel" Command="{Binding VolumeViewModel.UpLevel}" Content="++++" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,80,80" />
-            <Button x:Name="btnDownLevel" Command="{Binding VolumeViewModel.DownLevel}" Content="-------" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,80,20" />
-            <Button x:Name="button" Command="{Binding ChannelViewModel.Switch}" Content="Switch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,80,50" />
+            <Button x:Name="btnPrevious" Command="{Binding ChannelViewModel.GoPrivious}"  Content="▲" HorizontalAlignment="Right" Margin="0,0,40,69" VerticalAlignment="Bottom" RenderTransformOrigin="-0.305,0.674" Height="31" />
+            <Button x:Name="btnNext"  Command="{Binding ChannelViewModel.GoNext}" Content="▼" HorizontalAlignment="Left" Margin="144,40,0,0" VerticalAlignment="Top" Height="41" />
+            <Button x:Name="btnUpLevel" Command="{Binding VolumeViewModel.UpLevel}" Content="＋" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,120,65" Height="33" Width="14" />
+            <Button x:Name="btnDownLevel" Command="{Binding VolumeViewModel.DownLevel}" Content="-" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,119,19" RenderTransformOrigin="-3.63,-0.04" Height="34" Width="15" />
+            <Button x:Name="button" Command="{Binding ChannelViewModel.Switch}" Content="返回" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,75,50" RenderTransformOrigin="0.998,0.522" />
         </Grid>
     </Grid>
 </Window>

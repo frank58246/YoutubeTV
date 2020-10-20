@@ -44,9 +44,11 @@ namespace YoutubeTV
 
             // event
             this.KeyDown += MainWindow_KeyDown;
-            this.MouseEnter += ShowControllPannel;
-            this.controllPannel.MouseMove += ShowControllPannel;
+            this.MouseMove += ShowControllPannel;
             this._mainViewController.ChannelViewModel.OnChangingChannel = OnChangingChannel;
+
+            // Disable Chinese input
+            InputMethod.SetIsInputMethodEnabled(this, false);
 
             // timer
             this.StartTimer();

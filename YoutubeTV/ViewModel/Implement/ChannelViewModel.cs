@@ -48,6 +48,7 @@ namespace YoutubeTV.ViewModel.Implement
 
                 this._lastChannelIndex = this._currentIndex;
                 this._currentIndex = value;
+                
             }
         }
 
@@ -77,6 +78,10 @@ namespace YoutubeTV.ViewModel.Implement
                 this._currentChannel = value;
                 this._channelProvider.SetLastChannel(this._currentChannel.Number);
                 OnPropertyChanged();
+                if (this.OnChangingChannel != null)
+                {
+                    OnChangingChannel.Invoke();
+                }
             }
         }
 
@@ -164,7 +169,6 @@ namespace YoutubeTV.ViewModel.Implement
                 return;
             }
 
-            // TODO need refractor
             // swap
             var temp = this._currentIndex;
             this._currentIndex = this._lastChannelIndex;
